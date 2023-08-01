@@ -32,7 +32,9 @@
 
 ```Whats coming
 $ Iam still working to add more features, unit and e2e testing, 
-doing some aggregation and piplines for provide for ex : 5 Cheapest restaurants etc.. AND MORE
+doing some aggregation and piplines for provide for ex : 5 Cheapest restaurants etc..
+$ i will add some features for geolocations then maybe will add something 
+to get 3 nearest restaurant based on current location OR based on particular point user provide 
 ```
 
 ## Description
