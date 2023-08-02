@@ -66,16 +66,20 @@ export class RestaurantsController {
   }
 
   @Get('/All/Stats')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
   stats() {
     return this.restaurantService.restaurantsStats();
   }
 
   @Get('All/Top-5-Cheapest')
+  @UseGuards(AuthGuard('jwt'))
   getCheapestRestaurants() {
     return this.restaurantService.getCheapestRestaurants();
   }
 
   @Get('/All/Top-5-Expensive')
+  @UseGuards(AuthGuard('jwt'))
   getFiveExpensive() {
     return this.restaurantService.getFiveExpensive();
   }
