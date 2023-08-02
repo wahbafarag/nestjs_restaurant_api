@@ -28,11 +28,12 @@
     * Authentication and Authorization with JWT
     * Managing rules for ex : who can create a review etc...
     * basic cruds , linking ratings to users and restaurants
+    * getting restaurants stats(admins only) , cheapest and expensive restaurants
 
 
 ```Whats coming
 $ Iam still working to add more features, unit and e2e testing, 
-doing some aggregation and piplines for provide for ex : 5 Cheapest restaurants etc..
+doing some aggregation and piplines for provide for ex : 5 Cheapest restaurants (Done)
 $ i will add some features for geolocations then maybe will add something 
 to get 3 nearest restaurant based on current location OR based on particular point user provide 
 ```
