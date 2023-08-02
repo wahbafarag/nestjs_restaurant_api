@@ -39,9 +39,28 @@ export class Restaurant {
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }] })
   ratings?: Review[];
 
+  @Prop({
+    default: 4.5,
+    min: [1, 'Rating must be more than 1'],
+    max: [5, 'Rating must be less than 5'],
+    //set: (val: number) => Math.round(val * 10) / 10,
+  })
+  ratingsAverage?: number;
+
+  @Prop({ default: 0 })
+  ratingsQuantity?: number;
+
   async save() {
     await this.save();
   }
 }
 
 export const restaurantSchema = SchemaFactory.createForClass(Restaurant);
+
+restaurantSchema.index({ price: 1, ratingsAverage: -1 });
+// virtual populate
+restaurantSchema.virtual('reviews', {
+  ref: 'Review',
+  localField: '_id',
+  foreignField: 'restaurant',
+});

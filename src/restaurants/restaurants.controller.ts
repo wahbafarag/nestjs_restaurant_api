@@ -1,16 +1,16 @@
 import {
-  Controller,
-  Post,
   Body,
-  UseGuards,
-  ValidationPipe,
-  Patch,
-  Param,
-  Get,
-  Query,
+  Controller,
   Delete,
+  Get,
   HttpCode,
   HttpStatus,
+  Param,
+  Patch,
+  Post,
+  Query,
+  UseGuards,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CurrentUser } from '../auth/decorators/current-user.decorator';
 import { AuthGuard } from '@nestjs/passport';
@@ -63,5 +63,20 @@ export class RestaurantsController {
   @Get('/:id')
   findById(@Param('id', ParseObjectIdPipe) id: string) {
     return this.restaurantService.findById(id);
+  }
+
+  @Get('/All/Stats')
+  stats() {
+    return this.restaurantService.restaurantsStats();
+  }
+
+  @Get('All/Top-5-Cheapest')
+  getCheapestRestaurants() {
+    return this.restaurantService.getCheapestRestaurants();
+  }
+
+  @Get('/All/Top-5-Expensive')
+  getFiveExpensive() {
+    return this.restaurantService.getFiveExpensive();
   }
 }

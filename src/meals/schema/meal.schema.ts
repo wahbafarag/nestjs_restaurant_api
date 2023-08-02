@@ -1,4 +1,4 @@
-import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { User } from '../../users/schemas/user.schema';
 import mongoose from 'mongoose';
 import { Restaurant } from '../../restaurants/schemas/restaurant.schema';
@@ -21,6 +21,9 @@ export class Meal {
   @Prop({ required: true })
   price: number;
 
+  @Prop()
+  mealDiscount?: number;
+
   @Prop({ required: true })
   category: Category;
 
@@ -39,5 +42,10 @@ export class Meal {
     ref: 'Restaurant',
   })
   restaurant: Restaurant;
+
+  validateDiscount() {
+    return this.mealDiscount < this.price;
+  }
 }
+
 export const mealSchema = SchemaFactory.createForClass(Meal);

@@ -56,23 +56,26 @@ export class RestaurantRepository {
           },
         }
       : {};
-    return await this.restaurantModel
+    return this.restaurantModel
       .find()
       .find(keyword)
       .limit(resultsPerPage)
       .skip(skip)
       .sort('-createdAt')
-      .populate('user', 'name email');
+      .populate('user', 'name email')
+      .populate('meals ratings');
   }
 
   async findById(id: string): Promise<Restaurant> {
-    const restaurant = await this.restaurantModel.findById(id).populate('ratings');
+    const restaurant = await this.restaurantModel
+      .findById(id)
+      .populate('ratings meals');
     if (!restaurant) throw new NotFoundException('Restaurant not found');
-    return restaurant.populate('user', 'name email');
+    return restaurant.populate('user ratingsQuantity', 'name email');
   }
 
-  async findOne(id:any){
-    return this.restaurantModel.findOne({_id: id});
+  async findOne(id: any) {
+    return this.restaurantModel.findOne({ _id: id });
   }
 
   async delete(id: string): Promise<void> {
