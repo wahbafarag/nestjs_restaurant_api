@@ -22,6 +22,10 @@ export class AuthService {
     return token;
   }
 
+  async hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, 12);
+  }
+
   async signUp(body: SignUpDto): Promise<{
     user: User;
     token: string;
