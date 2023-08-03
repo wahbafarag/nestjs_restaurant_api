@@ -12,8 +12,12 @@ export class UsersService {
     return await this.userRepository.create(user);
   }
 
-  async findAll(): Promise<User[]> {
+  async find(): Promise<User[]> {
     return await this.userRepository.find();
+  }
+
+  async findById(id: string): Promise<User> {
+    return this.userRepository.findById(id);
   }
 
   async findByEmail(email: string): Promise<User> {
@@ -26,9 +30,5 @@ export class UsersService {
 
   async delete(id: string): Promise<void> {
     await this.userRepository.delete(id);
-  }
-
-  async findById(id: string): Promise<User> {
-    return this.userRepository.findById(id);
   }
 }

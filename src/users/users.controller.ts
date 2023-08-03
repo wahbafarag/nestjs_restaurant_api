@@ -1,15 +1,15 @@
 import {
-  Controller,
-  Post,
   Body,
-  Get,
-  Patch,
+  Controller,
   Delete,
-  Param,
-  ValidationPipe,
+  Get,
   HttpCode,
   HttpStatus,
+  Param,
+  Patch,
+  Post,
   UseGuards,
+  ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Roles } from '../auth/decorators/roles.decorator';
@@ -35,8 +35,8 @@ export class UsersController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('admin')
   @HttpCode(HttpStatus.OK)
-  listAllUsers() {
-    return this.usersService.findAll();
+  find() {
+    return this.usersService.find();
   }
 
   @Get('/:id')
