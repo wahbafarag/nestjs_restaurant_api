@@ -33,7 +33,7 @@ const mockUser = {
   role: UserRoles.ADMIN,
 };
 
-const mockResaurantsService = {
+const mockResturantsService = {
   create: jest.fn().mockResolvedValue(mockRestaurant),
   findAll: jest.fn().mockResolvedValue([mockRestaurant]),
   findById: jest.fn().mockResolvedValueOnce(mockRestaurant),
@@ -53,7 +53,7 @@ describe('RestaurantsController', () => {
       providers: [
         {
           provide: RestaurantsService,
-          useValue: mockResaurantsService,
+          useValue: mockResturantsService,
         },
       ],
     }).compile();
