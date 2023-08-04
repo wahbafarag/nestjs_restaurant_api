@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { RestaurantsService } from './restaurants.service';
 import { RestaurantsController } from './restaurants.controller';
-import { restaurantSchema } from './schemas/restaurant.schema';
+import { Restaurant, restaurantSchema } from './schemas/restaurant.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RestaurantRepository } from './restaurant.repository';
 import { ratingSchema, Review } from '../ratings/schemas/rating.schema';
@@ -9,7 +9,7 @@ import { ratingSchema, Review } from '../ratings/schemas/rating.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'Restaurant', schema: restaurantSchema },
+      { name: Restaurant.name, schema: restaurantSchema },
     ]),
     MongooseModule.forFeature([{ name: Review.name, schema: ratingSchema }]),
   ],

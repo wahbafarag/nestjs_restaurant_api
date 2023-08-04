@@ -18,11 +18,8 @@ export class RestaurantRepository {
     // await restaurant.save();
     // return restaurant;
     const data = Object.assign(body, { user: user._id });
-    const restaurant = (await this.restaurantModel.create(data)).populate(
-      'user',
-      'name email role',
-    );
-    return restaurant;
+    const restaurant = await this.restaurantModel.create(data);
+    return restaurant.populate('user', 'name email role');
   }
 
   async update(
@@ -36,9 +33,9 @@ export class RestaurantRepository {
       { new: true, runValidators: true },
     );
     if (!restaurant) throw new NotFoundException('Restaurant not found');
-    restaurant.user = user._id;
-    await restaurant.save();
-    return restaurant.populate('user', 'name email role');
+
+    // return restaurant.populate('user', 'name email role');
+    return restaurant;
   }
 
   async findAll(query: any): Promise<Restaurant[]> {
@@ -57,13 +54,14 @@ export class RestaurantRepository {
         }
       : {};
     return this.restaurantModel
-      .find()
+
       .find(keyword)
       .limit(resultsPerPage)
       .skip(skip)
       .sort('-createdAt')
       .populate('user', 'name email')
-      .populate('meals ratings');
+      .populate('meals ratings')
+      .lean();
   }
 
   async findById(id: string): Promise<Restaurant> {
