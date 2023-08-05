@@ -28,7 +28,8 @@
     * Authentication and Authorization with JWT
     * Managing rules for ex : who can create a review etc...
     * basic cruds , linking ratings to users and restaurants
-    * getting restaurants stats(admins only) , cheapest and expensive restaurants
+    * getting restaurants stats, cheapest and expensive restaurants
+    * Users Roles limitations
 
 
 ```Whats coming
